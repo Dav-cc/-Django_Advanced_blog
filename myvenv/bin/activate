@@ -39,10 +39,10 @@ deactivate nondestructive
 if [ "${OSTYPE:-}" = "cygwin" ] || [ "${OSTYPE:-}" = "msys" ] ; then
     # transform D:\path\to\venv to /d/path/to/venv on MSYS
     # and to /cygdrive/d/path/to/venv on Cygwin
-    export VIRTUAL_ENV=$(cygpath /home/david/Desktop/Django/-Django_Advanced_blog/myvenv)
+    export VIRTUAL_ENV=$(cygpath /home/david/Desktop/Django/Django_Advanced_blog/myvenv)
 else
     # use the path as-is
-    export VIRTUAL_ENV=/home/david/Desktop/Django/-Django_Advanced_blog/myvenv
+    export VIRTUAL_ENV=/home/david/Desktop/Django/Django_Advanced_blog/myvenv
 fi
 
 _OLD_VIRTUAL_PATH="$PATH"

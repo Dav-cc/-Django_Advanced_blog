@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/david/Desktop/Django/-Django_Advanced_blog/myvenv
+set -gx VIRTUAL_ENV /home/david/Desktop/Django/Django_Advanced_blog/myvenv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
