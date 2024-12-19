@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin 
-from .models import User 
+from .models import User ,Profile
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 # Register your models here.
 
@@ -66,4 +66,5 @@ class CustomUserAdmin(UserAdmin):
     )
     
     
-admin.site.register(User, CustomUserAdmin)    
+admin.site.register(User, CustomUserAdmin)  
+admin.site.register(Profile)  
