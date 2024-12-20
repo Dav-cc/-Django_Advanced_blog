@@ -1,12 +1,12 @@
 from django.db import models
-
+from accounts.models import User
 # Create your models here.
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    
+
     def __str__(self):
-        return self.name    
+        return self.name
 
 
 
@@ -23,7 +23,6 @@ class Post(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField()
-    
+
     def __str__(self):
         return self.title
-    
