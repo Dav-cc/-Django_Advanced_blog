@@ -85,7 +85,7 @@
 
         <!-- Meta information (author, category, created date) -->
         <div class="meta-info">
-            <p><strong>Author:</strong> {{ post.author }}</p>
+            <p><strong>Author:</strong> {{ post.author.first_name }}</p>
             <p><strong>Category:</strong> {{ post.category.name }}</p>
             <p><strong>Created on:</strong> {{ post.created_date|date:"F j, Y" }}</p>
         </div>
