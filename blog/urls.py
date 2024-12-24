@@ -10,5 +10,7 @@ urlpatterns = [
     path('post', PostList.as_view(), name = 'postlistt'),
     path('cbvindex', HomeView.as_view() , name = 'cbv_index'),
     path('posts/<int:pk>' , PostDetailView.as_view(), name = 'detail'),
-    path('formpost', PostCreatFormView.as_view(), name = 'form')
+    path('create', PostCreatView.as_view(), name = 'create'),
+    path('posts/<int:pk>/edit/', PostUpdateView.as_view(), name = 'edite'),
+    path('posts/<int:pk>/delete', PostDeleteView.as_view(), name = 'delete'),
 ]

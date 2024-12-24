@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+        }
+
+        .btn-delete {
+            background-color: #d9534f;
+        }
+
+        .btn-delete:hover {
+            background-color: #c9302c;
+        }
+
+        .btn-cancel {
+            background-color: #5bc0de;
+        }
+
+        .btn-cancel:hover {
+            background-color: #31b0d5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Are you sure you want to delete this post?</h1>
+        <p><strong>{{ post.title }}</strong></p>
+        <p>This action cannot be undone.</p>
+
+        <div class="confirmation-buttons">
+            <!-- Delete Button -->
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-delete">Delete</button>
+            </form>
+
+            <!-- Cancel Button -->
+            <a href="{% url 'blog:postlistt' %}" class="btn btn-cancel">Cancel</a>
+        </div>
+    </div>
+
+</body>
+</html>
