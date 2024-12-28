@@ -5,7 +5,10 @@ from .serializers import PostSerializer
 from blog.models import Post
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView , ListCreateAPIView
+from rest_framework import mixins
+
+
 
 
 # @api_view(['GET','POST'])
@@ -37,31 +40,36 @@ class PostList(APIView):
 '''
 
 
-class PostList(GenericAPIView):
+class PostList(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    def get (self,request):
-        queryset = self.get_queryset()
-        serializer = self.serializer_class(queryset, many = True)
-        return Response(serializer.data)
-
-    def post(self, request):
-
-        serializer = self.serializer_class(data = request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(request.data)
 
 
 
 
 
 
+class PostSingle(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    lookup_field = 'id'
+    # def get(self , request, *args, **kwargs):
+    #     return self.retrieve( request, *args, **kwargs)
+
+    # def put(self ,request, *args, **kwargs):
+    #     return self.update(request, *args, **kwargs)
+
+    # def delete(self, request, *args, **kwargs):
+    #     return self.destroy(request, *args, **kwargs)
 
 
 
 
+
+
+'''
 
 class PostSingle(APIView):
     permission_classes = [IsAuthenticated]
@@ -85,7 +93,7 @@ class PostSingle(APIView):
         post.delete()
         return Response("item deleted")
 
-
+'''
 
 
 
