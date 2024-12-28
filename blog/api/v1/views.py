@@ -5,7 +5,7 @@ from .serializers import PostSerializer
 from blog.models import Post
 from rest_framework import status
 from rest_framework.views import APIView
-
+from rest_framework.generics import GenericAPIView
 
 
 # @api_view(['GET','POST'])
@@ -19,7 +19,7 @@ from rest_framework.views import APIView
 #         if serializer.is_valid():
 #             serializer.save()
 #             return Response(request.data)
-
+'''
 
 class PostList(APIView):
     permission_classes = [IsAuthenticated]
@@ -34,6 +34,29 @@ class PostList(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(request.data)
+'''
+
+
+class PostList(GenericAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    def get (self,request):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many = True)
+        return Response(serializer.data)
+
+    def post(self, request):
+
+        serializer = self.serializer_class(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(request.data)
+
+
+
+
+
 
 
 
