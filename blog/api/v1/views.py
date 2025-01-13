@@ -1,9 +1,10 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from .serializers import PostSerializer
 from blog.models import Post
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveUpdateDestroyAPIView , ListCreateAPIView
 from rest_framework import mixins
@@ -41,7 +42,7 @@ class PostList(APIView):
 
 
 class PostList(ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
 
@@ -127,3 +128,22 @@ class PostSingle(APIView):
 #     elif request.method == "DELETE":
 #         posts.delete()
 #         return Response("item deleted")
+
+
+# class Postviewset(viewsets.ViewSet):
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = PostSerializer
+#     queryset = Post.objects.all()
+#     lookup_field = 'id'
+    
+#     def list(self , request):
+#         query = Post.objects.all()
+#         serializer = self.serializer_class(self.queryset, many=True)
+#         return Response(serializer.data)
+    
+#     def retrieve(self, request, pk=None):
+#         queryset = get_object_or_404(self.queryset , pk=pk)
+#         serializer = self.serializer_class(queryset)
+#         return Response(serializer.data)
+        
+        
